@@ -1,0 +1,17 @@
+{
+  "name": "openfreelancer-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "openfreelancer-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "freelance"
+  ],
+  "author": "IvanM",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^2.2.11"
+  }
+}
