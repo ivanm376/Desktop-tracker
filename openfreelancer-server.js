@@ -11,7 +11,7 @@ db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
         db.stats(function (err, stats){ console.log(stats); });
     }
     if (process.argv[2] === 'CLEAR') {
-        screenshots.remove({ created_at: { $lt: Date.now() - 31 * 24 * 60 * 60 * 1000 }}); // older than month
+        screenshots.remove({ created_at: { $lt: Date.now() + 31 * 24 * 60 * 60 * 1000 }}, function () { console.log('done'); }); // older than month
     }
     http.createServer(function (req, res) {
         var url    = req.url.split('/');
