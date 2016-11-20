@@ -68,7 +68,7 @@ db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
                         var body = '<head><link rel="stylesheet" type="text/css" href="openfreelancer-theme.css"><head>' + client.name + '<table>';
                         items.forEach(function (item, index) {
                             if (!(index % 6)) {
-                                body += '</tr><tr><td>' + new Date(item.created_at).toUTCString().slice(0, -7).split(' 2016 ').join(' ') + '</td>';
+                                body += '</tr><tr><td>' + Math.floor(index/6) + '</td><td>' + new Date(item.created_at).toUTCString().slice(0, -7).split(' 2016 ').join(' ') + '</td>';
                             }
                             body += '<td><a target=_blank href=' + id + '/' + item._id.toString() + '><img src="data:image/png;base64,' + new Buffer(item.thumbnail.buffer).toString('base64') + '"></a></td>';
                         });
