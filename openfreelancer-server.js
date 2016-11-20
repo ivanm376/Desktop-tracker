@@ -2,11 +2,7 @@ var db = require('mongodb').MongoClient;
 var ObjectID = new require('mongodb').ObjectID;
 var http = require('http');
 var fs = require('fs');
-
-var clients = {
-    'asdui3274iewernsdufu3': { name: 'Johny' },
-    'sadf435ewr435sdf4343s': { name: 'Luis'  }
-};
+var clients = require('./clients');
 
 db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
     var screenshots = db.collection('screenshots');

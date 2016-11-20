@@ -3,6 +3,8 @@
 Stores freelancer's screenshots in Mongo openfreelancer db
 and provides simplistic UI view
 
+To add users edit clients.json
+
 
 # Run
 
