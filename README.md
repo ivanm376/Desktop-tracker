@@ -1,6 +1,8 @@
 # OpenFreelancer-server
 
-Using Mongo openfreelancer db
+Stores freelancer's screenshot in Mongo openfreelancer db
+and provides simplistic UI view
+
 
 # Run
 
