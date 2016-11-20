@@ -25,3 +25,11 @@ To add users edit clients.json
 
 >$ node openfreelancer-server.js CLEAR
 
+
+# Info
+
+Average row size 300-400 kB
+
+>hour : ~2.5 mB
+>week : ~70-120 mB
+>month: ~300-500 mB / per client
