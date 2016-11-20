@@ -18,9 +18,9 @@ db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
         screenshots.remove({ created_at: { $lt: Date.now() - 31 * 24 * 60 * 60 * 1000 }}); // older than month
     }
     http.createServer(function (req, res) {
-        var url        = req.url.split('/');
-        var id         = url[1];
-        var path     = url[2];
+        var url    = req.url.split('/');
+        var id     = url[1];
+        var path   = url[2];
         var client = clients[id];
         if (id === 'openfreelancer-theme.css') {
             fs.createReadStream('openfreelancer-theme.css').pipe(res);
