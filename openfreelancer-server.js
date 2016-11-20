@@ -65,7 +65,7 @@ db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
                 } else {
                     screenshots.find({
                         created_at: {
-                            $gt: Date.now() - 60 * 60 * 1000 // last 60 minutes
+                            $gt: Date.now() - 31 * 24 * 60 * 60 * 1000 // last month
                         },
                         client: id
                     }).sort({ created_at: -1 }).toArray(function (err, items) {
