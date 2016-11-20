@@ -5,7 +5,7 @@ var fs = require('fs');
 
 var clients = {
     'asdui3274iewernsdufu3': { name: 'Johny' },
-    'sadf435ewr435sdf4343s': { name: 'Luis'    }
+    'sadf435ewr435sdf4343s': { name: 'Luis'  }
 };
 
 db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
