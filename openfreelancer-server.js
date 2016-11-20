@@ -28,9 +28,7 @@ db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
                     client.lock = 'first_request';
                 } else {
                     client.lock = 'timeout'; // DOS protection
-                    setTimeout(function () {
-                        delete client.lock;
-                    }, 9 * 60 * 1000); // 9 minutes
+                    setTimeout(function () { delete client.lock; }, 10 * 60 * 1000 - 1); // 10 minutes
                 }
                 var body = [];
                 req.on('data', function (chunk) {
