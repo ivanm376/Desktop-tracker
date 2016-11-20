@@ -5,6 +5,8 @@ and provides simplistic UI view
 
 To add users edit clients.json
 
+#Install
+>$ npm i
 
 # Run
 
