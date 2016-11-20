@@ -11,25 +11,25 @@ var clients = {
 db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
   var screenshots = db.collection('screenshots');
   screenshots.createIndex({ client: 1, created_at: 1 });
+// screenshots.remove({ created_at: { $lt: Date.now() - 31 * 24 * 60 * 60 * 1000 }}); // remove rows older than month
   http.createServer(function (req, res) {
     var url    = req.url.split('/');
     var id     = url[1];
     var path   = url[2];
     var client = clients[id];
-    if (req.url === '/openfreelancer-theme.css') {
+    if (id === 'openfreelancer-theme.css') {
       fs.createReadStream('openfreelancer-theme.css').pipe(res);
     } else if (!client) {
       res.end('Unknown id: ' + id);
     } else {
-      if (req.method === 'POST' && client.state !== 'timeout') {
-        if (client.state !== 'first_request') {
-          client.state = 'first_request';
+      if (req.method === 'POST' && client.lock !== 'timeout') {
+        if (client.lock !== 'first_request') {
+          client.lock = 'first_request';
         } else {
-          client.state = 'timeout'; // DOS protection
+          client.lock = 'timeout'; // DOS protection
           setTimeout(function () {
-            delete client.state;
-          }, 4000);
-//           }, 10 * 60 * 1000); // 9 minutes
+            delete client.lock;
+          }, 9 * 60 * 1000); // 9 minutes
         }
         var body = [];
         req.on('data', function (chunk) {
@@ -62,7 +62,7 @@ db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
             },
             client: id
           }).sort({ created_at: -1 }).toArray(function (err, items) {
-            var body = '<head><link rel="stylesheet" type="text/css" href="openfreelancer-theme.css"><head><table>';
+            var body = '<head><link rel="stylesheet" type="text/css" href="openfreelancer-theme.css"><head>' + client.name + '<table>';
             items.forEach(function (item, index) {
               if (!(index % 6)) {
                 body += '</tr><tr><td>' + new Date(item.created_at).toUTCString().slice(0, -7).split(' 2016 ').join(' ') + '</td>';
@@ -78,8 +78,6 @@ db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
     }
   }).listen(process.env.PORT || 3070);
 });
-
-// screenshots.remove({ created_at: { $lt: Date.now() - 60 * 60 * 1000 }}); // remove
 
 process.on('uncaughtException', function (err) {
   console.log(err.stack);
