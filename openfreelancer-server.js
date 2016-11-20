@@ -11,7 +11,12 @@ var clients = {
 db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
     var screenshots = db.collection('screenshots');
     screenshots.createIndex({ client: 1, created_at: 1 });
-// screenshots.remove({ created_at: { $lt: Date.now() - 31 * 24 * 60 * 60 * 1000 }}); // remove rows older than month
+    if (process.argv[2] === 'STATS') {
+        db.stats(function (err, stats){ console.log(stats); });
+    }
+    if (process.argv[2] === 'CLEAR') {
+        screenshots.remove({ created_at: { $lt: Date.now() - 31 * 24 * 60 * 60 * 1000 }}); // older than month
+    }
     http.createServer(function (req, res) {
         var url        = req.url.split('/');
         var id         = url[1];
