@@ -12,7 +12,7 @@ To add users edit clients.json
 >$ node openfreelancer-server.js
 
 # Access UI
->https://localhost:3070/**{{USER_KEY}}**
+>http://localhost:3070/**{{USER_KEY}}**
 
 # DB Stats
 >$ node openfreelancer-server.js STATS
