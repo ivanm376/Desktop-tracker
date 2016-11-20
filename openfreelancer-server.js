@@ -59,10 +59,10 @@ db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
             },
             client: id
           }).sort({ created_at: -1 }).toArray(function (err, items) {
-            var body = '<table border=1>';
+            var body = '<table border=1 cellpadding=10>';
             items.forEach(function (item, index) {
-              if (!(index % 7)) {
-                body += '</tr><tr><td>' + new Date(item.created_at).toUTCString().slice(0, -7) + '</td>';
+              if (!(index % 6)) {
+                body += '</tr><tr><td>' + new Date(item.created_at).toUTCString().slice(0, -7).split(' 2016 ').join(' ') + '</td>';
               }
               body += '<td><a target=_blank href=' + id + '/' + item._id.toString() + '><img src="data:image/png;base64,' + new Buffer(item.thumbnail.buffer).toString('base64') + '"></a></td>';
             });
