@@ -57,9 +57,11 @@ db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
                 });
             } else if (req.method === 'GET') {
                 if (path) {
-                    screenshots.findOne(new ObjectID(path), function (err, item) {
-                        res.end(new Buffer(item.screenshot.buffer));
-                    });
+                    try {
+                        screenshots.findOne(new ObjectID(path), function (err, item) {
+                            res.end(new Buffer(item.screenshot.buffer));
+                        });
+                    } catch (err) { res.end('Unknown id: ' + path); }
                 } else {
                     screenshots.find({
                         created_at: {
