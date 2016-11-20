@@ -1,6 +1,7 @@
 var db = require('mongodb').MongoClient;
 var ObjectID = new require('mongodb').ObjectID;
 var http = require('http');
+var fs = require('fs');
 
 var clients = {
   'asdui3274iewernsdufu3': { name: 'Johny' },
@@ -15,7 +16,9 @@ db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
     var id     = url[1];
     var path   = url[2];
     var client = clients[id];
-    if (!client) {
+    if (req.url === '/openfreelancer-theme.css') {
+      fs.createReadStream('openfreelancer-theme.css').pipe(res);
+    } else if (!client) {
       res.end('Unknown id: ' + id);
     } else {
       if (req.method === 'POST' && client.state !== 'timeout') {
@@ -59,7 +62,7 @@ db.connect('mongodb://localhost:27017/openfreelancer', function (err, db) {
             },
             client: id
           }).sort({ created_at: -1 }).toArray(function (err, items) {
-            var body = '<table border=1 cellpadding=10>';
+            var body = '<head><link rel="stylesheet" type="text/css" href="openfreelancer-theme.css"><head><table>';
             items.forEach(function (item, index) {
               if (!(index % 6)) {
                 body += '</tr><tr><td>' + new Date(item.created_at).toUTCString().slice(0, -7).split(' 2016 ').join(' ') + '</td>';
