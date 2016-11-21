@@ -2,6 +2,9 @@
 Stores freelancer's screenshots in Mongo openfreelancer db
 and provides simplistic UI view
 
+![OpenFreelancer-server]
+(https://s11.postimg.org/wo4do0hlf/openfreelancer.jpg)
+
 To add users edit clients.json
 
 #Install
