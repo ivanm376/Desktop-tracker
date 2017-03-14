@@ -3,7 +3,7 @@ Stores screenshots in Mongo db
 and provides simplistic UI view
 
 ![Screenshot-server]
-(https://s15.postimg.org/qkvuwy223/openfreelancer.jpg)
+(https://s23.postimg.org/oulznz6zv/test.jpg)
 
 To add users edit clients.json
 
