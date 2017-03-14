@@ -4,7 +4,7 @@ const http = require('http');
 const fs = require('fs');
 const clients = require('./clients');
 
-db.connect('mongodb://localhost:27017/openfreelancer', (err, db) => {
+db.connect('mongodb://localhost:27017/screenshot', (err, db) => {
     const screenshots = db.collection('screenshots');
     screenshots.createIndex({ client: 1, created_at: 1 });
     if (process.argv[2] === 'STATS') {
@@ -18,8 +18,8 @@ db.connect('mongodb://localhost:27017/openfreelancer', (err, db) => {
         const id     = url[1];
         const path   = url[2];
         const client = clients[id];
-        if (id === 'openfreelancer-theme.css') {
-            fs.createReadStream('openfreelancer-theme.css').pipe(res);
+        if (id === 'screenshot-theme.css') {
+            fs.createReadStream('screenshot-theme.css').pipe(res);
         } else if (!client) {
             res.end('Unknown id: ' + id);
         } else {
@@ -62,7 +62,7 @@ db.connect('mongodb://localhost:27017/openfreelancer', (err, db) => {
                         },
                         client: id
                     }).sort({ created_at: -1 }).toArray((err, items) => {
-                        var body = '<head><link rel="stylesheet" type="text/css" href="openfreelancer-theme.css"><head>' + client.name + '<table>';
+                        var body = '<head><link rel="stylesheet" type="text/css" href="screenshot-theme.css"><head>' + client.name + '<table>';
                         items.forEach((item, index) => {
                             if (!(index % 6)) {
                                 body += '</tr><tr><td>' + Math.floor(index/6) + '</td><td>' + new Date(item.created_at).toUTCString().slice(0, -7).split(' 2016 ').join(' ') + '</td>';
