@@ -1,8 +1,8 @@
-# OpenFreelancer-server
-Stores freelancer's screenshots in Mongo openfreelancer db
+# Test-screenshot-server
+Stores screenshots in Mongo db
 and provides simplistic UI view
 
-![OpenFreelancer-server]
+![Screenshot-server]
 (https://s15.postimg.org/qkvuwy223/openfreelancer.jpg)
 
 To add users edit clients.json
@@ -10,17 +10,17 @@ To add users edit clients.json
 #Install
 $ npm i
 # Run
-$ node openfreelancer-server.js
+$ node screenshot-server.js
 # Access UI
 http://localhost:3070/**{{USER_KEY}}**
 
 # DB Stats
-$ node openfreelancer-server.js STATS
+$ node screenshot-server.js STATS
 
 >find dataSize (bytes)
 
 # Remove rows older than month
-$ node openfreelancer-server.js CLEAR
+$ node screenshot-server.js CLEAR
 
 # Info
 Average row size 300-400 kB
