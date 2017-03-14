@@ -2,12 +2,11 @@
 Stores screenshots in Mongo db
 and provides simplistic UI view
 
-![Screenshot-server]
-(https://s23.postimg.org/oulznz6zv/test.jpg)
+![Screenshot-server](https://s23.postimg.org/oulznz6zv/test.jpg)
 
 To add users edit clients.json
 
-#Install
+# Install
 $ npm i
 # Run
 $ node screenshot-server.js
