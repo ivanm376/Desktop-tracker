@@ -13,6 +13,8 @@ $ node screenshot-server.js
 # Access UI
 http://localhost:3070/**{{USER_KEY}}**
 
+*check client.json*
+
 # DB Stats
 $ node screenshot-server.js STATS
 
